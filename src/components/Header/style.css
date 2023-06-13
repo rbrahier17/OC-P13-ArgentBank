@@ -1,0 +1,58 @@
+.Header .main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.Header .main-nav a,
+.Header .main-nav button {
+  font-weight: bold;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.Header .main-nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+.Header .main-nav-item-container {
+  display: flex;
+}
+
+.Header .main-nav-item {
+  text-decoration: none;
+  display: flex;
+  gap: 5px;
+}
+
+.Header .main-nav-item:first-child {
+  margin-right: 0.5rem;
+}
+
+.Header .main-nav-item img {
+  width: 16px;
+}
+
+.Header .main-nav-item:hover {
+  text-decoration: underline;
+}
+
+.Header .main-nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.Header .main-nav-logo-image {
+  max-width: 100%;
+  width: 200px;
+}
+
+@media (max-width: 450px) {
+  .Header .main-nav-item {
+    font-size: 13px;
+  }
+  .Header .main-nav-item:first-child {
+    margin-right: 0.2rem;
+  }
+}

@@ -1,0 +1,14 @@
+.SignInPage img[alt="User icon"] {
+  width: 16px;
+  margin-bottom: -2px;
+}
+
+.SignInPage .sign-in-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+}
+

@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+
+// Imports relative to the global state management
+import { useSelector } from "react-redux";
+import { RootState } from "./store/types";
+
+// Import page components
+import HomePage from "./pages/Home";
+import SignInPage from "./pages/SignIn";
+import UserPage from "./pages/User";
 
 function App() {
+  // Retrieve the user's login status from the global state
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      {/* 
+        If the user is already logged in, redirect to the User page, otherwise show the Sign In page.
+      */}
+      <Route path='/sign-in' element={isLoggedIn ? <Navigate to='/user' replace /> : <SignInPage />} />
+      {/* 
+        If the user is logged in, show the UserPage component, otherwise redirect to the Sign In page.
+      */}
+      <Route path='/user' element={isLoggedIn ? <UserPage /> : <Navigate to='/sign-in' replace />} />
+    </Routes>
   );
 }
 

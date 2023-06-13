@@ -1,0 +1,35 @@
+.UserDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserDetails .input-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.UserDetails .input-container input {
+  font-size: 1.1rem;
+  width: 200px;
+  height: 40px;
+  padding: 0 10px;
+}
+ 
+.UserDetails .input-container input::placeholder {
+  opacity: 0.55;
+}
+
+.UserDetails .edit-button-container {
+  display: flex;
+  gap: 20px;
+}
+
+.UserDetails .edit-button-container button {
+  width: 140px;
+}
+
+.UserDetails .error-message {
+  margin-top: 10px;
+}

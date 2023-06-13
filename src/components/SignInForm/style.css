@@ -1,0 +1,36 @@
+.SignInForm .sign-in-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.SignInForm .input-remember {
+  display: flex;
+}
+
+.SignInForm .input-remember label {
+  margin-left: 0.25rem;
+}
+
+.SignInForm .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.SignInForm .input-wrapper label {
+  font-weight: bold;
+}
+
+.SignInForm .input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
