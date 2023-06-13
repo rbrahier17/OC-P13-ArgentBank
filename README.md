@@ -8,7 +8,7 @@ Please note that this project requires a backend and API, which are available at
 
 To get started with ArgentBank, follow the steps below:
 
-1. Clone the repository: [https://github.com/your-username/argent-bank](https://github.com/your-username/argent-bank)
+1. Clone the repository: [https://github.com/rbrahier17/OC-P13-ArgentBank](https://github.com/rbrahier17/OC-P13-ArgentBank)
 2. Install the dependencies: `npm install`
 3. Start the development server: `npm start`
 
