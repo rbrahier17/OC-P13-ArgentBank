@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIsLoggedIn, setToken } from "../../slices/userSlice";
 
+// Import signIn function (this function is handling the API request)
+import signIn from "../../api/user/signIn";
+
 export default function SignInForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -41,36 +44,19 @@ export default function SignInForm() {
 
     if (!validateInputs()) return;
 
-    try {
-      const response = await fetch("http://localhost:3001/api/v1/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: username,
-          password: password,
-        }),
-      });
+    const credentials = {
+      email: username,
+      password: password,
+    };
 
-      if (response.ok) {
-        const data = await response.json();
-        const token = data.body.token;
-        dispatch(setToken({ token, rememberMe }));
-        dispatch(setIsLoggedIn());
-        navigate("/user");
-      } else {
-        if (response.status === 400) {
-          setErrorMessage("Incorrect credentials");
-        } else if (response.status === 500) {
-          setErrorMessage("Error 500: Server Error");
-        } else {
-          setErrorMessage("Unknown Error");
-        }
-      }
-    } catch (error) {
+    try {
+      const token: string = await signIn(credentials);
+      dispatch(setToken({ token, rememberMe }));
+      dispatch(setIsLoggedIn());
+      navigate("/user");
+    } catch (error: any) {
       console.log(error);
-      setErrorMessage("Oops an error occurred. You can retry or check the logs for more details.");
+      setErrorMessage(error.toString());
     }
 
     setUsername("");

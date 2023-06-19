@@ -15,6 +15,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../slices/userSlice";
 import { RootState } from "../../store/types";
 
+// Import getUserData function (this function is handling the API request)
+import getUserData from "../../api/user/getUserData";
+
 import { useEffect, useState } from "react";
 
 export default function UserPage() {
@@ -28,37 +31,20 @@ export default function UserPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchData() {
+    async function setUserData() {
       try {
-        const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = (await response.json()).body;
+          const data = await getUserData(token);
           dispatch(
             setUser({
               firstName: data.firstName,
               lastName: data.lastName,
             })
           );
-        } else {
-          if (response.status === 401) {
-            setErrorMessage("Token error - Unauthorized");
-          } else if (response.status === 500) {
-            setErrorMessage("Internal Server Error");
-          }
-        }
-      } catch (error) {
-        setErrorMessage("An error while retrieving user data. Please try again");
+      } catch (error:any) {
+        setErrorMessage(error.toString());
       }
     }
-
-    fetchData();
+    setUserData();
   }, []);
 
   const accountData = [
